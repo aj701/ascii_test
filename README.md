@@ -6,8 +6,10 @@ testing ascii conversions based on http://thecodeplayer.com/walkthrough/cool-asc
 - ID
 - height
 - width
+- frames
 - spriteURL
-
+- toneData[]
+- rgbData[]
 
 ####Methods
 - **computeASCIIF()**
