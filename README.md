@@ -12,11 +12,11 @@ testing ascii conversions based on http://thecodeplayer.com/walkthrough/cool-asc
 - <code>rgbData[]</code>
 
 ####Methods
-- **computeASCIIF()**
+- <code>computeASCIIF()</code>
 	- Create temporary canvas
 	- Draw sprite and compute tonal values
 	
-- **animateASCIFF()** aka update()
+- <code>animateASCIFF()</code> aka <code>update()</code>
 	- Create a ASCIFF div
 	- Output ASCIIF data
 	- Animate ASCIFF 
