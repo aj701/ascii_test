@@ -26,10 +26,11 @@ testing ascii conversions based on http://thecodeplayer.com/walkthrough/cool-asc
 	+---------+---------+---------+
 	+ img url + width   + frames  +
 	+---------+---------+---------+
-
+	+ ./01.gif+ 600		+ 28      +
+	+---------+---------+---------+
 
 ##Pageload Flow
 <code>onload()</code>
-1. First action
-2. Second action
-3. ... 
+1. First action  
+2. Second action  
+3. ...  
