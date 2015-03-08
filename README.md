@@ -11,6 +11,6 @@ testing ascii conversions based on http://thecodeplayer.com/walkthrough/cool-asc
 
 ####Methods
 - *printASCIIF*
--- Create temporary canvas. 
--- Create a div. Output ASCIIF data. Animate div. 
+	- Create temporary canvas. 
+	- Create a div. Output ASCIIF data. Animate div. 
 - 
