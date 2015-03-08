@@ -3,13 +3,13 @@ testing ascii conversions based on http://thecodeplayer.com/walkthrough/cool-asc
   
 ##ASCIIF Object  
 ####Properties
-- ID
-- height
-- width
-- frames
-- spriteURL
-- 	toneData[]
-- 	rgbData[]
+- <code>ID</code>
+- <code>height</code>
+- <code>width</code>
+- <code>frames</code>
+- <code>spriteURL</code>
+- <code>toneData[]</code>
+- <code>rgbData[]</code>
 
 ####Methods
 - **computeASCIIF()**
