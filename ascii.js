@@ -87,7 +87,7 @@ window.onload = function(){
 		//if the ascii reaches the last frame(9th in this case)
 		//margin needs to be reset to 0
 		//frame_width * (10-1) * -1(because we are taking the margin negative)
-		if(current_ml == frame_width*(frames-1)*-1)
+		if(current_ml < frame_width*(frames-1)*-1)
 			ascii.style.marginLeft = "0";
 		else
 			ascii.style.marginLeft = (current_ml - frame_width) + "px";
