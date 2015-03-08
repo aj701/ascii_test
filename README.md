@@ -8,8 +8,8 @@ testing ascii conversions based on http://thecodeplayer.com/walkthrough/cool-asc
 - width
 - frames
 - spriteURL
-- toneData[]
-- rgbData[]
+- 	toneData[]
+- 	rgbData[]
 
 ####Methods
 - **computeASCIIF()**
