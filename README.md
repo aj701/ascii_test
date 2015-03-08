@@ -30,7 +30,7 @@ testing ascii conversions based on http://thecodeplayer.com/walkthrough/cool-asc
 	+---------+---------+---------+
 
 ##Pageload Flow
-<code>onload()</code>
-1. First action  
-2. Second action  
-3. ...  
+<code>onload()  </code>
+1. Iterate through CSV and create ASCIFF object for each entry in CSV, place all into <code>allImage[]</code> array. 
+2. <code>ComputeASCIIF()</ocde> for each object in <code>allImage[]</code> array. 
+3. loop: call <code>animateASCIFF();<code>
