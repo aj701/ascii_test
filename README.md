@@ -20,3 +20,16 @@ testing ascii conversions based on http://thecodeplayer.com/walkthrough/cool-asc
 	- Create a ASCIFF div
 	- Output ASCIIF data
 	- Animate ASCIFF 
+
+
+##Sprite CSV 
+	+---------+---------+---------+
+	+ img url + width   + frames  +
+	+---------+---------+---------+
+
+
+##Pageload Flow
+<code>onload()</code>
+1. First action
+2. Second action
+3. ... 
