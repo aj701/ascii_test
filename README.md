@@ -10,7 +10,11 @@ testing ascii conversions based on http://thecodeplayer.com/walkthrough/cool-asc
 
 
 ####Methods
-- *printASCIIF*
-	- Create temporary canvas. 
-	- Create a div. Output ASCIIF data. Animate div. 
-- 
+- *computeASCIIF()*
+	- Create temporary canvas
+	- Draw sprite and compute tonal values
+	
+-  *animateASCIFF()* aka update()
+	- Create a ASCIFF div
+	- Output ASCIIF data
+	- Animate ASCIFF 
