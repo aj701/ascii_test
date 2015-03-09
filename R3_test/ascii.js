@@ -1,96 +1,118 @@
-window.onload = function(){
-	//some variables
-	var r, g, b, gray;
-	var character, line = "";
-	
-	//sprite stuff
-	var sprite = document.getElementById("sprite");
-	var W = sprite.width;
-	var H = sprite.height;
-	
-	//temporary canvas for pixel processing
-	var tcanvas = document.createElement("canvas");
-	tcanvas.width = W;
-	tcanvas.height = H; //same as the image
-	var tc = tcanvas.getContext("2d");
-	//painting the canvas white before painting the image to deal with pngs
-	tc.fillStyle = "white";
-	tc.fillRect(0, 0, W, H);
-	//drawing the image on the canvas
-	tc.drawImage(sprite, 0, 0, W, H);
-	
-	//accessing pixel data
-	var pixels = tc.getImageData(0, 0, W, H);
-	var colordata = pixels.data;
+
+function ASCIIF (idNum, w, h, totalFrames, spriteURL) {
+	this.id = idNum;
+	this.monospcW = this.findMonoWidth(); 
+	this.url = spriteURL; 
+	this.h = -1; //If no valid height input, the h = -1
+	this.h = h;  
+	this.w = w; 
+	this.spriteW = 0; 
+	this.frames = totalFrames; 
+/*	this.rgbData = []; //2D array: Array of Array of rgb data of each frame
+	this.toneData = []; //2D array: Array of Array of tonal data of each frame*/
+	this.asciiData = ""; //Array of ascii characters that make up the picture
+}
+
+ASCIIF.prototype.findMonoWidth = function() {
+/*	var tempChar = document.createElement("div");
+	var tempSpan = tempChar.appendChild(document.createElement("span"));
+	tempSpan.appendChild(document.createTextNode("0"));
+	tempSpan.id = "testWidth";
+	tempChar.id = "testWidthDiv";
+	document.getElementById("container").appendChild(tempChar);
+	var w = document.getElementById("testWidth").width;
+	document.getElementById("container").removeChild(tempChar);
+	return w; */
+
+	return 6.45;
+}
+
+
+ASCIIF.prototype.computeASCIIF = function() {
+
+	//Create a image of sprite on the page, hide it. 
+	var tempSprite = document.createElement("img");
+	tempSprite.src = this.url; 
+	tempSprite.style.display = "none";
+
+	//Create canvas element
+	var tempCanvas = document.createElement("canvas");
+	tempCanvas.width = tempSprite.width; 
+	this.spriteW = tempSprite.width; 
+	tempCanvas.height = this.h;
+
+	//Draw on temporary canvas
+	var tc = tempCanvas.getContext("2d");
+	tc.fillStyle = "#FFFFFF";
+	tc.fillRect(0, 0, tempSprite.width, this.h);
+	tc.drawImage(tempSprite, 0, 0, tempSprite.width, this.h);
+
+	//Access pixel data
+	var pixels = tc.getImageData(0, 0, tempSprite.width, this.h );
+
+
 	//every pixel gives 4 integers -> r, g, b, a
-	//so length of colordata array is W*H*4
-	var ascii = document.getElementById("ascii");
-	for(var i = 0; i < colordata.length; i = i+4)
-	{
-		r = colordata[i];
-		g = colordata[i+1];
-		b = colordata[i+2];
+	//so length of rgbData array is W*H*4
+	for (var i = 0; i < pixels.data.length; i = i+4){
+		var r = pixels.data[i];
+		var g = pixels.data[i+1];
+		var b = pixels.data[i+2];
+
 		//converting the pixel into grayscale
-		gray = r*0.2126 + g*0.7152 + b*0.0722;
-		//overwriting the colordata array with grayscale values
-		//colordata[i] = colordata[i+1] = colordata[i+2] = gray;
-		
-		//text for ascii art.
-		//blackish = dense characters like "W", "@"
-		//whitish = light characters like "`", "."
-		if(gray > 250) character = " "; //almost white
-		else if(gray > 230) character = "`";
-		else if(gray > 200) character = ":";
-		else if(gray > 175) character = "*";
-		else if(gray > 150) character = "+";
-		else if(gray > 125) character = "#";
-		else if(gray > 50) character = "W";
-		else character = "@"; //almost black
-		
-		//newlines and injection into dom
-		if(i != 0 && (i/4)%W == 0) //if the pointer reaches end of pixel-line
-		{
-			ascii.appendChild(document.createTextNode(line));
-			//newline
-			ascii.appendChild(document.createElement("br"));
-			//emptying line for the next row of pixels.
-			line = "";
-		}
-		
-		line += character;
+		var tone = r*0.2126 + g*0.7152 + b*0.0722; 
+
+		var character; 
+			//text for ascii art.
+			//blackish = dense characters like "W", "@"
+			//whitish = light characters like "`", "."
+			if(tone > 250) character = " "; //almost white
+			else if(tone > 230) character = "`";
+			else if(tone > 200) character = ":";
+			else if(tone > 175) character = "*";
+			else if(tone > 150) character = "+";
+			else if(tone > 125) character = "#";
+			else if(tone > 50) character = "W";
+			else character = "@"; //almost black
+
+			this.asciiData = this.asciiData.concat(character);
+
 	}
+
+}
+
+ASCIIF.prototype.loadASCIIF = function() {
+	var aniCanvas = document.createElement("pre");
+	aniCanvas.id = this.id; 
+	aniCanvas.className = "ascii";
+	aniCanvas.style.width = this.w*this.monospcW+"px"; 
+	aniCanvas.style.marginLeft = 0+"px"; 
+
+	//Load in ascii 
+	for (var i = 0; i < this.h; i++){
+		aniCanvas.appendChild(document.createTextNode(this.asciiData.slice(i*this.spriteW, this.spriteW*(i+1))));
+		aniCanvas.appendChild(document.createElement("br"));
+	};
+
+	document.getElementById("container").appendChild(aniCanvas);
+}
+
+ASCIIF.prototype.animateASCIIF = function() {
+	var aniCanvas = document.getElementById(this.id);
+
+
+}
+
+var testImgs = []; 
+
+window.onload = function(){
 	
-	//repainting the gray image
-	//tc.putImageData(pixels, 0, 0);
-	//you can see the grayscale version of the sprite now
-	//injecting the canvas into the DOM
-	//sprite.parentNode.insertBefore(tcanvas, sprite);
-	//you can see the canvas now with the image
 	
-	//animation time
-	var frames = 22; //sprite got 10 frames
-	var container = document.getElementById("container");
-	//width of container should allow only 1 frame to be seen
-	var frame_width = parseInt(window.getComputedStyle(container).width)/frames;
-	//window.getComputedStyle is supported in Chrome, FF, Opera, and IE9+
-	//The width has "px" at the end so parseInt is used to remove that
-	container.style.width = frame_width+"px";
+	testImgs[0] = new ASCIIF(01, 161, 120, 22, "images/8805-sm.png" );	
+	testImgs[1] = new ASCIIF(02, 161, 120, 22, "images/8805-sm.png" );	
+
+	testImgs[0].computeASCIIF();
+	testImgs[0].loadASCIIF();
 	
-	//We will change the margin-left of ascii to move it.
-	ascii.style.marginLeft = "0";
-	
-	setInterval(loop, 1000/10);
-	
-	function loop()
-	{
-		var current_ml = parseFloat(ascii.style.marginLeft);
-		//if the ascii reaches the last frame(9th in this case)
-		//margin needs to be reset to 0
-		//frame_width * (10-1) * -1(because we are taking the margin negative)
-		if(current_ml < frame_width*(frames-1)*-1)
-			ascii.style.marginLeft = "0";
-		else
-			ascii.style.marginLeft = (current_ml - frame_width) + "px";
-	}
-	
+
+
 }
