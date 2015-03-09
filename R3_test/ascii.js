@@ -84,7 +84,8 @@ ASCIIF.prototype.loadASCIIF = function() {
 	var aniCanvas = document.createElement("pre");
 	aniCanvas.id = this.id; 
 	aniCanvas.className = "ascii";
-	aniCanvas.style.width = this.w*this.monospcW+"px"; 
+	aniCanvas.style.width = this.w+"ex"; 
+	aniCanvas.style.marginBottom = 10+"em"; 
 	aniCanvas.style.marginLeft = 0+"px"; 
 
 	//Load in ascii 
@@ -98,8 +99,6 @@ ASCIIF.prototype.loadASCIIF = function() {
 
 ASCIIF.prototype.animateASCIIF = function() {
 	var aniCanvas = document.getElementById(this.id);
-
-
 }
 
 var testImgs = []; 
@@ -112,7 +111,9 @@ window.onload = function(){
 
 	testImgs[0].computeASCIIF();
 	testImgs[0].loadASCIIF();
-	
+
+	testImgs[1].computeASCIIF();
+	testImgs[1].loadASCIIF();
 
 
 }
