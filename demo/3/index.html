@@ -72,7 +72,7 @@ body {
 #ascii {
 	font-family: monospace;
 	font-size: 9px;
-	line-height: 60%;
+	line-height: 70%;
 }
 
 #ascii1 {
@@ -103,6 +103,24 @@ body {
 ::selection {
     color: white; 
     background: red;
+}
+
+.navMenu a, .navMenu a:visited {
+  font-family: monospace;
+  color: blue;
+  text-decoration: underline;
+}
+
+.navMenu a:hover {
+  font-family: monospace;
+  color: cyan;
+  text-decoration: underline;
+}
+
+.navMenu a:active {
+  font-family: monospace;
+  color: violet;
+  text-decoration: underline;
 }
 </style>
 
@@ -147,6 +165,19 @@ body {
       |_______/ |______/ \______/    |__/   |__/  |__/|______/ \______/    |__/  
     </pre>
     </div>
+      <div class="navMenu">
+        <a href="../1">1</a>
+        <a href="../2">2</a>
+        <a href="../3">3</a>
+        <a href="../4">4</a>
+        <a href="../5">5</a>
+        <a href="../6">6</a>
+        <a href="../7">7</a>
+        <a href="../8">8</a>
+        <a href="../9">9</a>
+        <a href="../10">10</a>
+        
+      </div>
     <script>
             function flashtext(ele,col) {
             var tmpColCheck = document.getElementById( ele ).style.color;
@@ -169,7 +200,7 @@ body {
 
 <div id="container">
 	
-	<div id="img1"><img src="images/00009.png" id="sprite"/>
+	<div id="img1"><img src="images/00002.png" id="sprite"/>
 	<!-- The ascii art comes in the pre tag below -->
 	<pre id="ascii"></pre>
   </div>
