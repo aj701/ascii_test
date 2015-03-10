@@ -36,7 +36,7 @@ ASCIIF.prototype.computeASCIIF = function() {
 	tc.fillRect(0, 0, tempSprite.width, this.h);
 	tc.drawImage(tempSprite, 0, 0, tempSprite.width, this.h);
 
-	//Access pixel data
+	//Access pixel data	
 	var pixels = tc.getImageData(0, 0, tempCanvas.width, this.h );
 
 
@@ -114,14 +114,14 @@ window.onload = function(){
 	charWidth = $("#testWidth > span").width()/161;
 	console.log("Char Width is " + charWidth);
 
-	testImgs[0] = new ASCIIF(01, 161, 120, 22, "images/8805-sm.png" );	
-	testImgs[1] = new ASCIIF(02, 161, 120, 22, "images/8805-sm.png" );	
+	testImgs[0] = new ASCIIF(01, 161, 120, 9, "images/8805-sm.png" );	
+	testImgs[1] = new ASCIIF(02, 160, 120, 9, "images/00002.png" );	
 
 	testImgs[0].computeASCIIF();
 	testImgs[0].loadASCIIF();
 
-	testImgs[1].computeASCIIF();
-	testImgs[1].loadASCIIF();
+/*	testImgs[1].computeASCIIF();
+	testImgs[1].loadASCIIF();*/
 
 	setInterval( loop , 100);
 	function loop() {
